@@ -1,103 +1,16 @@
-# syntax_highlighter
+This is a fork of [syntax_highlighter](https://github.com/viztushar/syntax_highlighter) that has been migrated to null safety.
 
-syntax highlighter for show your code in the app
+You can use this fork if your app depends on `syntax_highlighter` but needs the null safety version of it.
 
-# How to Use It
+In order to do that, simply add the line below to your `dependencies` in your `pubspec.yaml` file:
 
-### Step 2
+```yaml
 
-add your code in your file
-
-```javascript
-String _exampleCode =
-      "class MyHomePage extends StatefulWidget { MyHomePage({Key key, this.title}) : super(key: key); final String title; @override _MyHomePageState createState() => _MyHomePageState();}";
-```
-
-### Step 2
-
-add `SyntaxHighlighterStyle` in your `build` method
-
-```javascript
-final SyntaxHighlighterStyle style =
-        Theme.of(context).brightness == Brightness.dark
-            ? SyntaxHighlighterStyle.darkThemeStyle()
-            : SyntaxHighlighterStyle.lightThemeStyle();
-```
-
-### Step 3
-
-add this code
-
-```javascript
-            RichText(
-              text: TextSpan(
-                style: const TextStyle(fontFamily: 'monospace', fontSize: 10.0),
-                children: <TextSpan>[
-                  DartSyntaxHighlighter(style).format(_exampleCode),
-                ],
-              ),
-```
-
-# Full Example
-
-check Full Example code in [example/lib/main.dart](https://github.com/viztushar/syntax_highlighter/blob/master/example/lib/main.dart)
-
-```javascript
-import 'package:flutter/material.dart';
-import 'package:syntax_highlighter/syntax_highlighter.dart';
-
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Syntax Highlighter Example',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: 'Syntax Highlighter Example'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  String _exampleCode =
-      "class MyHomePage extends StatefulWidget { MyHomePage({Key key, this.title}) : super(key: key); final String title; @override _MyHomePageState createState() => _MyHomePageState();}";
-
-  @override
-  Widget build(BuildContext context) {
-    final SyntaxHighlighterStyle style =
-        Theme.of(context).brightness == Brightness.dark
-            ? SyntaxHighlighterStyle.darkThemeStyle()
-            : SyntaxHighlighterStyle.lightThemeStyle();
-    return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-        ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: RichText(
-              text: TextSpan(
-                style: const TextStyle(fontFamily: 'monospace', fontSize: 10.0),
-                children: <TextSpan>[
-                  DartSyntaxHighlighter(style).format(_exampleCode),
-                ],
-              ),
-            ),
-          ),
-        ));
-  }
-}
-
+dependencies:
+  ...
+  syntax_highlighter: 
+    git:
+      url: git://github.com/victoreronmosele/syntax_highlighter.git
+      ref: c0554996f4ca454a4955c3a3fc68dec2cfa06ea4
+  ...
 ```
